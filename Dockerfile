@@ -11,6 +11,8 @@ COPY eye_model.pkl /app/eye_model.pkl
 # Установите зависимости
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir scipy
+
 
 # Копируйте остальной код
 COPY . .
