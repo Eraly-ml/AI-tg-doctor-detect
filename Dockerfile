@@ -1,5 +1,8 @@
 FROM python:3.10-slim
 
+# Add this line to install the required OpenGL library
+RUN apt-get update && apt-get install -y libgl1-mesa-glx
+
 # Install system dependencies for SciPy
 RUN apt-get update && apt-get install -y libblas-dev liblapack-dev gfortran
 # Install build tools and dependencies
