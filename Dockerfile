@@ -5,8 +5,8 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Копируйте файлы модели в контейнер
-COPY brain_model.pkl /app/models/brain_model.pkl
-COPY eye_model.pkl /app/models/eye_model.pkl
+COPY brain_model.pkl /app/brain_model.pkl
+COPY eye_model.pkl /app/eye_model.pkl
 
 # Установите зависимости
 COPY requirements.txt .
