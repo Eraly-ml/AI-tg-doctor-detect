@@ -7,6 +7,7 @@ import numpy as np
 import cv2
 from fastai.vision.all import *
 from PIL import Image
+import asyncio
 
 def generate_gradcam(learn, image, target_layer_name="0"):
     """Генерация Grad-CAM для заданной модели и изображения."""
@@ -204,7 +205,7 @@ async def analyze_image(update: Update, context: CallbackContext):
 
 # Main bot loop
 async def main():
-    TOKEN = "7643217203:AAECM5T-AoJ67fEbT3EUtYQe5QNSFID2lmk"
+    TOKEN = "7746515924:AAFQSx4hBY_XH_p5sDuic_1Wqq9d_ix0r0k"
     app = Application.builder().token(TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
@@ -216,4 +217,9 @@ async def main():
     await app.run_polling()
 
 # Run the bot
-await main()
+async def run():
+    await main()
+
+# Call the run function to start the async process
+if __name__ == "__main__":
+    asyncio.run(run())
