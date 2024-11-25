@@ -1,22 +1,20 @@
-# Используйте базовый образ
 FROM python:3.10-slim
 
-# Установите рабочую директорию
-WORKDIR /app
+# Install system dependencies for SciPy
+RUN apt-get update && apt-get install -y libblas-dev liblapack-dev gfortran
 
-# Копируйте файлы модели в контейнер
-COPY brain_model.pkl /app/brain_model.pkl
-COPY eye_model.pkl /app/eye_model.pkl
+# Upgrade pip and setuptools
+RUN pip install --upgrade pip setuptools
 
-# Установите зависимости
+# Install required Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Install SciPy separately (in case of issues with other dependencies)
 RUN pip install --no-cache-dir scipy
 
+# Copy the rest of the application code
+COPY . /app
 
-# Копируйте остальной код
-COPY . .
-
-# Определите команду для запуска контейнера
+WORKDIR /app
 CMD ["python", "bot.py"]
-
